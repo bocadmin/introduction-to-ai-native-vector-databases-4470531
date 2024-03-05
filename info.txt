@@ -1,0 +1,136 @@
+
+# 1) https://weaviate.io/developers/weaviate/client-libraries/python
+
+
+@bocadmin ➜ /workspaces/introduction-to-ai-native-vector-databases-4470531 (main) $ wget https://pypi.org/project/weaviate-client/#files
+--2024-03-05 18:10:28--  https://pypi.org/project/weaviate-client/
+Resolving pypi.org (pypi.org)... 151.101.0.223, 151.101.192.223, 151.101.128.223, ...
+Connecting to pypi.org (pypi.org)|151.101.0.223|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 200330 (196K) [text/html]
+Saving to: ‘index.html’
+
+index.html                                             100%[==========================================================================================================================>] 195.63K  --.-KB/s    in 0.02s   
+
+2024-03-05 18:10:28 (11.0 MB/s) - ‘index.html’ saved [200330/200330]
+
+@bocadmin ➜ /workspaces/introduction-to-ai-native-vector-databases-4470531 (main) $ pip install -U weaviate-client  # For beta versions: `pip install --pre -U "weaviate-client==4.*"`pip install -U weaviate-client  # For beta versions: `pip install --pre -U "weaviate-client==4.*"`
+Collecting weaviate-client
+  Downloading weaviate_client-4.5.1-py3-none-any.whl.metadata (3.3 kB)
+Requirement already satisfied: requests<3.0.0,>=2.30.0 in /home/codespace/.local/lib/python3.10/site-packages (from weaviate-client) (2.31.0)
+Collecting httpx==0.27.0 (from weaviate-client)
+  Downloading httpx-0.27.0-py3-none-any.whl.metadata (7.2 kB)
+Collecting validators==0.22.0 (from weaviate-client)
+  Downloading validators-0.22.0-py3-none-any.whl.metadata (4.7 kB)
+Collecting authlib<2.0.0,>=1.2.1 (from weaviate-client)
+  Downloading Authlib-1.3.0-py2.py3-none-any.whl.metadata (3.8 kB)
+Collecting pydantic<3.0.0,>=2.5.0 (from weaviate-client)
+  Downloading pydantic-2.6.3-py3-none-any.whl.metadata (84 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 84.4/84.4 kB 1.9 MB/s eta 0:00:00
+Collecting grpcio<2.0.0,>=1.57.0 (from weaviate-client)
+  Downloading grpcio-1.62.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.0 kB)
+Collecting grpcio-tools<2.0.0,>=1.57.0 (from weaviate-client)
+  Downloading grpcio_tools-1.62.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.2 kB)
+Collecting grpcio-health-checking<2.0.0,>=1.57.0 (from weaviate-client)
+  Downloading grpcio_health_checking-1.62.0-py3-none-any.whl.metadata (1.3 kB)
+Requirement already satisfied: anyio in /home/codespace/.local/lib/python3.10/site-packages (from httpx==0.27.0->weaviate-client) (4.2.0)
+Requirement already satisfied: certifi in /home/codespace/.local/lib/python3.10/site-packages (from httpx==0.27.0->weaviate-client) (2024.2.2)
+Requirement already satisfied: httpcore==1.* in /home/codespace/.local/lib/python3.10/site-packages (from httpx==0.27.0->weaviate-client) (1.0.2)
+Requirement already satisfied: idna in /home/codespace/.local/lib/python3.10/site-packages (from httpx==0.27.0->weaviate-client) (3.6)
+Requirement already satisfied: sniffio in /home/codespace/.local/lib/python3.10/site-packages (from httpx==0.27.0->weaviate-client) (1.3.0)
+Requirement already satisfied: h11<0.15,>=0.13 in /home/codespace/.local/lib/python3.10/site-packages (from httpcore==1.*->httpx==0.27.0->weaviate-client) (0.14.0)
+Collecting cryptography (from authlib<2.0.0,>=1.2.1->weaviate-client)
+  Downloading cryptography-42.0.5-cp39-abi3-manylinux_2_28_x86_64.whl.metadata (5.3 kB)
+Collecting protobuf>=4.21.6 (from grpcio-health-checking<2.0.0,>=1.57.0->weaviate-client)
+  Downloading protobuf-4.25.3-cp37-abi3-manylinux2014_x86_64.whl.metadata (541 bytes)
+Requirement already satisfied: setuptools in /usr/local/python/3.10.13/lib/python3.10/site-packages (from grpcio-tools<2.0.0,>=1.57.0->weaviate-client) (68.2.2)
+Collecting annotated-types>=0.4.0 (from pydantic<3.0.0,>=2.5.0->weaviate-client)
+  Downloading annotated_types-0.6.0-py3-none-any.whl.metadata (12 kB)
+Collecting pydantic-core==2.16.3 (from pydantic<3.0.0,>=2.5.0->weaviate-client)
+  Downloading pydantic_core-2.16.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.5 kB)
+Requirement already satisfied: typing-extensions>=4.6.1 in /home/codespace/.local/lib/python3.10/site-packages (from pydantic<3.0.0,>=2.5.0->weaviate-client) (4.9.0)
+Requirement already satisfied: charset-normalizer<4,>=2 in /home/codespace/.local/lib/python3.10/site-packages (from requests<3.0.0,>=2.30.0->weaviate-client) (3.3.2)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/python/3.10.13/lib/python3.10/site-packages (from requests<3.0.0,>=2.30.0->weaviate-client) (2.0.7)
+Requirement already satisfied: exceptiongroup>=1.0.2 in /home/codespace/.local/lib/python3.10/site-packages (from anyio->httpx==0.27.0->weaviate-client) (1.2.0)
+Requirement already satisfied: cffi>=1.12 in /home/codespace/.local/lib/python3.10/site-packages (from cryptography->authlib<2.0.0,>=1.2.1->weaviate-client) (1.16.0)
+Requirement already satisfied: pycparser in /home/codespace/.local/lib/python3.10/site-packages (from cffi>=1.12->cryptography->authlib<2.0.0,>=1.2.1->weaviate-client) (2.21)
+Downloading weaviate_client-4.5.1-py3-none-any.whl (305 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 305.5/305.5 kB 7.4 MB/s eta 0:00:00
+Downloading httpx-0.27.0-py3-none-any.whl (75 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 75.6/75.6 kB 2.4 MB/s eta 0:00:00
+Downloading validators-0.22.0-py3-none-any.whl (26 kB)
+Downloading Authlib-1.3.0-py2.py3-none-any.whl (223 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 223.7/223.7 kB 7.0 MB/s eta 0:00:00
+Downloading grpcio-1.62.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (5.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.5/5.5 MB 51.7 MB/s eta 0:00:00
+Downloading grpcio_health_checking-1.62.0-py3-none-any.whl (18 kB)
+Downloading grpcio_tools-1.62.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.8/2.8 MB 38.9 MB/s eta 0:00:00
+Downloading pydantic-2.6.3-py3-none-any.whl (395 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 395.2/395.2 kB 11.0 MB/s eta 0:00:00
+Downloading pydantic_core-2.16.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.2/2.2 MB 35.4 MB/s eta 0:00:00
+Downloading annotated_types-0.6.0-py3-none-any.whl (12 kB)
+Downloading protobuf-4.25.3-cp37-abi3-manylinux2014_x86_64.whl (294 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 294.6/294.6 kB 8.9 MB/s eta 0:00:00
+Downloading cryptography-42.0.5-cp39-abi3-manylinux_2_28_x86_64.whl (4.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.6/4.6 MB 52.3 MB/s eta 0:00:00
+Installing collected packages: validators, pydantic-core, protobuf, grpcio, annotated-types, pydantic, httpx, grpcio-tools, grpcio-health-checking, cryptography, authlib, weaviate-client
+  Attempting uninstall: httpx
+    Found existing installation: httpx 0.26.0
+    Uninstalling httpx-0.26.0:
+      Successfully uninstalled httpx-0.26.0
+Successfully installed annotated-types-0.6.0 authlib-1.3.0 cryptography-42.0.5 grpcio-1.62.0 grpcio-health-checking-1.62.0 grpcio-tools-1.62.0 httpx-0.27.0 protobuf-4.25.3 pydantic-2.6.3 pydantic-core-2.16.3 validators-0.22.0 weaviate-client-4.5.1
+
+
+======================
+# 03_03/03_03.ipynb
+======================
+
+start backend from docker image:
+
+@bocadmin ➜ /workspaces/introduction-to-ai-native-vector-databases-4470531/03_03 (main) $ docker-compose up
+Creating network "03_03_default" with the default driver
+Pulling weaviate (semitechnologies/weaviate:1.21.3)...
+1.21.3: Pulling from semitechnologies/weaviate
+7264a8db6415: Pull complete
+4cd99e85061e: Pull complete
+13114785b979: Pull complete
+16e8d82ff8d0: Pull complete
+Digest: sha256:aafd6ccc93b528e5bb43e6775ed0c08bb92177603fe43236d5f7d2b050642f26
+Status: Downloaded newer image for semitechnologies/weaviate:1.21.3
+Pulling multi2vec-clip (semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1)...
+sentence-transformers-clip-ViT-B-32-multilingual-v1: Pulling from semitechnologies/multi2vec-clip
+faef57eae888: Pulling fs layer
+36578dff3c0f: Pulling fs layer
+9959144defad: Pull complete
+3186e40b567a: Pull complete
+94a3827a7208: Pull complete
+15141f61aa6b: Pull complete
+000cb1aff9e0: Pull complete
+c402bf38c963: Pull complete
+2ae09e2a359c: Pull complete
+65ce7d8c9a4b: Pull complete
+6b21070c16ac: Pull complete
+6611eecf1295: Pull complete
+b24ac4543f9f: Pull complete
+Digest: sha256:f59a170ab515cc9258119d5d7478dfd5a2ed826f58e47a2221e12cc727f76457
+Status: Downloaded newer image for semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
+Creating 03_03_weaviate_1       ... done
+Creating 03_03_multi2vec-clip_1 ... done
+Attaching to 03_03_multi2vec-clip_1, 03_03_weaviate_1
+weaviate_1        | {"action":"startup","default_vectorizer_module":"multi2vec-clip","level":"info","msg":"the default vectorizer modules is set to \"multi2vec-clip\", as a result all new schema classes without an explicit vectorizer setting, will use this vectorizer","time":"2024-03-05T18:21:24Z"}
+weaviate_1        | {"action":"startup","auto_schema_enabled":true,"level":"info","msg":"auto schema enabled setting is set to \"true\"","time":"2024-03-05T18:21:24Z"}
+weaviate_1        | {"action":"init_state.delete_init","level":"error","msg":"disk_space: no such file or directory","time":"2024-03-05T18:21:24Z"}
+weaviate_1        | {"action":"multi2vec_remote_wait_for_startup","error":"send check ready request: Get \"http://multi2vec-clip:8080/.well-known/ready\": dial tcp 172.18.0.2:8080: connect: connection refused","level":"warning","msg":"multi2vec-clip inference service not ready","time":"2024-03-05T18:21:26Z"}
+weaviate_1        | {"action":"multi2vec_remote_wait_for_startup","error":"send check ready request: Get \"http://multi2vec-clip:8080/.well-known/ready\": dial tcp 172.18.0.2:8080: connect: connection refused","level":"warning","msg":"multi2vec-clip inference service not ready","time":"2024-03-05T18:21:27Z"}
+weaviate_1        | {"action":"multi2vec_remote_wait_for_startup","error":"send check ready request: Get \"http://multi2vec-clip:8080/.well-known/ready\": dial tcp 172.18.0.2:8080: connect: connection refused","level":"warning","msg":"multi2vec-clip inference service not ready","time":"2024-03-05T18:21:28Z"}
+weaviate_1        | {"action":"multi2vec_remote_wait_for_startup","error":"send check ready request: Get \"http://multi2vec-clip:8080/.well-known/ready\": dial tcp 172.18.0.2:8080: connect: connection refused","level":"warning","msg":"multi2vec-clip inference service not ready","time":"2024-03-05T18:21:29Z"}
+weaviate_1        | {"action":"multi2vec_remote_wait_for_startup","error":"send check ready request: Get \"http://multi2vec-clip:8080/.well-known/ready\": dial tcp 172.18.0.2:8080: connect: connection refused","level":"warning","msg":"multi2vec-clip inference service not ready","time":"2024-03-05T18:21:30Z"}
+weaviate_1        | {"action":"multi2vec_remote_wait_for_startup","error":"send check ready request: Get \"http://multi2vec-clip:8080/.well-known/ready\": dial tcp 172.18.0.2:8080: connect: connection refused","level":"warning","msg":"multi2vec-clip inference service not ready","time":"2024-03-05T18:21:31Z"}
+
+
+you can monitor output of backend in the browser:
+
+https://vigilant-spork-j7p7wxqwrp925g-8080.app.github.dev/v1
+{"links":[{"href":"/v1/meta","name":"Meta information about this instance/cluster"},{"documentationHref":"https://weaviate.io/developers/weaviate/api/rest/schema","href":"/v1/schema","name":"view complete schema"},{"documentationHref":"https://weaviate.io/developers/weaviate/api/rest/schema","href":"/v1/schema{/:className}","name":"CRUD schema"},{"documentationHref":"https://weaviate.io/developers/weaviate/api/rest/objects","href":"/v1/objects{/:id}","name":"CRUD objects"},{"documentationHref":"https://weaviate.io/developers/weaviate/api/rest/classification,https://weaviate.io/developers/weaviate/api/rest/classification#knn-classification","href":"/v1/classifications{/:id}","name":"trigger and view status of classifications"},{"documentationHref":"https://weaviate.io/developers/weaviate/api/rest/well-known#liveness","href":"/v1/.well-known/live","name":"check if Weaviate is live (returns 200 on GET when live)"},{"documentationHref":"https://weaviate.io/developers/weaviate/api/rest/well-known#readiness","href":"/v1/.well-known/ready","name":"check if Weaviate is ready (returns 200 on GET when ready)"},{"documentationHref":"https://weaviate.io/developers/weaviate/api/rest/well-known#openid-configuration","href":"/v1/.well-known/openid-configuration","name":"view link to openid configuration (returns 404 on GET if no openid is configured)"}]}
