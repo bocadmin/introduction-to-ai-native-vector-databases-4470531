@@ -134,3 +134,63 @@ you can monitor output of backend in the browser:
 
 https://vigilant-spork-j7p7wxqwrp925g-8080.app.github.dev/v1
 {"links":[{"href":"/v1/meta","name":"Meta information about this instance/cluster"},{"documentationHref":"https://weaviate.io/developers/weaviate/api/rest/schema","href":"/v1/schema","name":"view complete schema"},{"documentationHref":"https://weaviate.io/developers/weaviate/api/rest/schema","href":"/v1/schema{/:className}","name":"CRUD schema"},{"documentationHref":"https://weaviate.io/developers/weaviate/api/rest/objects","href":"/v1/objects{/:id}","name":"CRUD objects"},{"documentationHref":"https://weaviate.io/developers/weaviate/api/rest/classification,https://weaviate.io/developers/weaviate/api/rest/classification#knn-classification","href":"/v1/classifications{/:id}","name":"trigger and view status of classifications"},{"documentationHref":"https://weaviate.io/developers/weaviate/api/rest/well-known#liveness","href":"/v1/.well-known/live","name":"check if Weaviate is live (returns 200 on GET when live)"},{"documentationHref":"https://weaviate.io/developers/weaviate/api/rest/well-known#readiness","href":"/v1/.well-known/ready","name":"check if Weaviate is ready (returns 200 on GET when ready)"},{"documentationHref":"https://weaviate.io/developers/weaviate/api/rest/well-known#openid-configuration","href":"/v1/.well-known/openid-configuration","name":"view link to openid configuration (returns 404 on GET if no openid is configured)"}]}
+
+
+
+NOTE:
+fixing the path for Images, and provide the cell's scope in .ipynb notobook, my local docker WeavieateDB instance is inserting images properly:
+
+weaviate_1        | {"action":"multi2vec_remote_wait_for_startup","error":"send check ready request: Get \"http://multi2vec-clip:8080/.well-known/ready\": dial tcp 172.18.0.2:8080: connect: connection refused","level":"warning","msg":"multi2vec-clip inference service not ready","time":"2024-03-05T18:21:41Z"}
+weaviate_1        | {"action":"multi2vec_remote_wait_for_startup","error":"send check ready request: Get \"http://multi2vec-clip:8080/.well-known/ready\": dial tcp 172.18.0.2:8080: connect: connection refused","level":"warning","msg":"multi2vec-clip inference service not ready","time":"2024-03-05T18:21:42Z"}
+multi2vec-clip_1  | INFO:     Started server process [8]
+multi2vec-clip_1  | INFO:     Waiting for application startup.
+multi2vec-clip_1  | INFO:     Running on CPU
+weaviate_1        | {"action":"multi2vec_remote_wait_for_startup","error":"send check ready request: Get \"http://multi2vec-clip:8080/.well-known/ready\": dial tcp 172.18.0.2:8080: connect: connection refused","level":"warning","msg":"multi2vec-clip inference service not ready","time":"2024-03-05T18:21:43Z"}
+weaviate_1        | {"action":"multi2vec_remote_wait_for_startup","error":"send check ready request: Get \"http://multi2vec-clip:8080/.well-known/ready\": dial tcp 172.18.0.2:8080: connect: connection refused","level":"warning","msg":"multi2vec-clip inference service not ready","time":"2024-03-05T18:21:44Z"}
+weaviate_1        | {"action":"multi2vec_remote_wait_for_startup","error":"send check ready request: Get \"http://multi2vec-clip:8080/.well-known/ready\": dial tcp 172.18.0.2:8080: connect: connection refused","level":"warning","msg":"multi2vec-clip inference service not ready","time":"2024-03-05T18:21:45Z"}
+multi2vec-clip_1  | INFO:     Model initialization complete
+multi2vec-clip_1  | INFO:     Application startup complete.
+multi2vec-clip_1  | INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+multi2vec-clip_1  | INFO:     172.18.0.3:53976 - "GET /.well-known/ready HTTP/1.1" 204 No Content
+weaviate_1        | {"action":"grpc_startup","level":"info","msg":"grpc server listening at [::]:50051","time":"2024-03-05T18:21:46Z"}
+weaviate_1        | {"action":"restapi_management","level":"info","msg":"Serving weaviate at http://[::]:8080","time":"2024-03-05T18:21:46Z"}
+multi2vec-clip_1  | INFO:     172.18.0.3:47624 - "GET /meta HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:40412 - "GET /meta HTTP/1.1" 200 OK
+weaviate_1        | {"action":"hnsw_vector_cache_prefill","count":1000,"index_id":"textimagesearch_RGK4JETWfxrz","level":"info","limit":1000000000000,"msg":"prefilled vector cache","time":"2024-03-05T19:12:02Z","took":44564}
+multi2vec-clip_1  | INFO:     172.18.0.3:40854 - "GET /meta HTTP/1.1" 200 OK
+weaviate_1        | {"action":"hnsw_vector_cache_prefill","count":1000,"index_id":"clipexample_CTap2zWPngw5","level":"info","limit":1000000000000,"msg":"prefilled vector cache","time":"2024-03-05T19:22:24Z","took":41197}
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:52564 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:44864 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:48676 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:53920 - "POST /vectorize HTTP/1.1" 200 OK
+multi2vec-clip_1  | INFO:     172.18.0.3:53688 - "POST /vectorize HTTP/1.1" 200 OK
