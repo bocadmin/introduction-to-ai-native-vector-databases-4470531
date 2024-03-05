@@ -194,3 +194,100 @@ multi2vec-clip_1  | INFO:     172.18.0.3:44864 - "POST /vectorize HTTP/1.1" 200 
 multi2vec-clip_1  | INFO:     172.18.0.3:48676 - "POST /vectorize HTTP/1.1" 200 OK
 multi2vec-clip_1  | INFO:     172.18.0.3:53920 - "POST /vectorize HTTP/1.1" 200 OK
 multi2vec-clip_1  | INFO:     172.18.0.3:53688 - "POST /vectorize HTTP/1.1" 200 OK
+
+
+
+03_03e.ipynb / 03_03/03_05e.ipynb    (query similar images to given text description in the context)
+=================================
+es = (client.query
+       .get('ClipExample',['text',"_additional {distance} "])             # search based on given CONTEXT - which is "greenery and trees" text
+       .with_near_text({"concepts":"greenery and trees"})                 # find 3 images stored in weaviateDB, that are similaar to description given by context
+       .with_limit(3)
+       .do()
+)
+
+print(json.dumps(res,indent=2))
+# OUTPUT:
+{
+  "data": {
+    "Get": {
+      "ClipExample": [
+        {
+          "_additional": {
+            "distance": 0.74983835
+          },
+          "text": "Forest_LIL_134133.jpg"                                  # forest is greenery, trees
+        },
+        {
+          "_additional": {
+            "distance": 0.7561507
+          },
+          "text": "Spiral staircase_LIL_134156.jpg"                         # has some green stuff
+        },
+        {
+          "_additional": {
+            "distance": 0.768982
+          },
+          "text": "Golden Gate Bridge from Presidio_LIL_9682.jpg"
+        },
+        {
+          "_additional": {
+            "distance": 0.77236956
+...
+      ]
+    }
+  }
+}
+Output is truncated. View as a scrollable 
+
+
+
+
+# 03_03e.ipynb / 03_05e.ipynb  (search similar images to a given test example image)
+======================================================================================
+
+#Lets search for images using a query image
+
+#TestImages/Beach with a building_LIL_134146.jpg
+
+res = (client.query
+       .get('ClipExample',['text',"_additional {distance} "])
+       .with_near_image({"image":"TestImages/Beach with a building_LIL_134146.jpg"})
+       .with_limit(5)
+       .do()
+)
+
+print(json.dumps(res,indent=2))
+
+# OUT:
+{
+  "data": {
+    "Get": {
+      "ClipExample": [
+        {
+          "_additional": {
+            "distance": 0.22762054
+          },
+          "text": "Big Sur_ California_LIL_9678.jpg"
+        },
+        {
+          "_additional": {
+            "distance": 0.2604211
+          },
+          "text": "Golden Gate Bridge from Presidio_LIL_9682.jpg"
+        },
+        {
+          "_additional": {
+            "distance": 0.27988183
+          },
+          "text": "Point Reyes_ California_LIL_9672.jpg"
+        },
+        {
+          "_additional": {
+            "distance": 0.28169328
+...
+      ]
+    }
+  }
+}
+
