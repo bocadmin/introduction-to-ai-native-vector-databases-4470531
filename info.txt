@@ -315,3 +315,205 @@ print(json.dumps(res,indent=2))
 	alpha-ponderation-factor - how much keyword-exact, how much vector-similarity alpha=0.0 pure keyword-search, alpaha=1.0 (pure vector-search)
 	05_03 RAG pattern (query vectordb w/ a concept -> local knowledge docs + initial_queyr -> GPT -> accurate results + OpenAPI chatGPT
 	05_04/5  Challenge/Solution
+
+  ==================================================QUIZ-es=========================================================
+
+  Question 1 of 4
+Vectors that are similar should have similar lengths.
+FALSE<<<<<
+
+Correct
+
+
+very rarely
+
+TRUE
+Question 2 of 4
+Can a vector have negative length/magnitude?
+
+It depends on the direction.
+
+TRUE
+FALSE <<<<<
+
+Correct
+
+Question 3 of 4
+What are numerical representations of data that capture the meaning behind the data called?
+vectors <<<<<
+
+Correct
+
+
+sets
+
+objects
+Question 4 of 4
+What type of data is easier represented as numbers?
+structured <<<<<
+
+Correct
+
+
+image
+
+unstructured
+
+-----------------------
+
+Question 1 of 4
+How can you generate vectors for your objects using Weaviate?
+
+Vectors are not needed to perform similarity search.
+
+Weaviate does not allow you to vectorize your data; you need to perform this separately.
+Weaviate has a vectorizer module that you can specify which vectorizes your data prior to storing it in the database. <<<<<<<<<
+
+Correct
+
+Question 2 of 4
+How do you query for concepts in a vector database?
+
+using SQL queries
+
+searching over metadata of objects
+using natural language  <<<<<<<<
+
+Correct
+
+Question 3 of 4
+What does a query vector being close to an object vector imply?
+semantic similarity <<<<<<<<
+
+Correct
+
+
+a very high Euclidean distance
+
+the vectors are collinear
+Question 4 of 4
+What does vector search allow us to do?
+
+measure distance between all vectors
+
+translate data into vectors
+retrieve similar vectors <<<<<<<<<
+
+Correct
+---------------------
+Question 1 of 3
+How does Weaviate allow you to build search engines over multiple types of data including images and text?
+
+by using machine learning models like CLIP that understand both types of data and thus can generate vectors 
+for each type which can then be compared   <<<<<<<<<<<<<
+
+Correct
+
+
+by turning images into words and then capturing their meaning using vectors
+
+by generating images from text data to capture the meaning behind it and storing these images as vectors
+
+Question 2 of 3
+How do Machine learning models generate vectors for data points?
+
+by incrementally adding noise to the data points
+
+by using a codebook that encrypts the data into numerical format
+
+by learning to solve tasks using the data that require them to represent the data in a numerical format 
+while still preserving its meaning  <<<<<<<<<<<<<<<
+
+Correct
+
+Question 3 of 3
+The same datapoint can generate different vectors if passed through different ML models.
+
+FALSE
+TRUE  <<<<<<<<<<<
+
+Correct
+
+
+It depends on the datapoint.
+
+---------------------------------------
+
+Question 1 of 3
+What tradeoff do the Approximate Nearest Neighbours algorithms offer?
+
+ANN allows us to trade a little bit of accuracy for a lot of memory savings.
+ANN allows us to trade a little bit of accuracy for a lot of speed. <<<<<<<<
+
+Correct
+
+
+ANN allows us to trade a little bit of speed for a lot of memory savings.
+
+Question 2 of 3
+What does CRUD mean?
+
+Copy, Reload, Update, and Download
+Create, Read, Update, and Delete <<<<<<<<<<
+
+Correct
+
+
+Control, Retrieve, Upsert, and Downgrade
+
+
+Question 3 of 3
+What does the Recall metric measure?
+
+It measures how many vectors the database can recall from disk and store in RAM in order to perform operations on them,
+
+It is a way to measure how many of the results of your vector search are relevant to the query. 
+It is measured as a percentage. <<<<<<<
+
+Correct
+
+
+It tell you how fast your database can recall data points from memory and thus how many queries it can perform per second.
+
+
+-----------------------------------
+Question 1 of 3
+How does RAG help improve the performance of a large language model?
+
+by enabling the LLM to retrieve context from an external knowledge base and using this context to generate truthful answers <<<<<<<
+
+Correct  ( concepts->vectorDB->context)   (initial_querey, answer=context ) -> LLM -> accurate results
+
+
+by using a vector database to retrieve context and then fine tuning the LLM on this content
+
+by using a vector database to check the correctness of the content after it has been fully generated
+
+
+Question 2 of 3
+What does the alpha parameter in hybrid search in Weaviate allow you to control?
+
+which type of search should be used - keyword or vector:   alpha * vector_similarity_search + (1-alpha) * keyword_exact_search
+
+how strongly the results from vector search should be weighed compared to the results from keyword search <<<<<<
+
+Correct
+
+
+choose which type of search returns more relevant results
+
+
+
+Question 3 of 3
+
+What value do recommender systems provide e-commerce platforms?
+realtime recommendation of store items based on personal user preference <<<<<<<
+
+Correct
+
+
+realtime recommendation of which products can be more optimally priced to improve margins
+
+realtime generation of new product images which combine other products users like
+
+=======
