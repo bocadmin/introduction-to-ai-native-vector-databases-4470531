@@ -291,3 +291,9 @@ print(json.dumps(res,indent=2))
   }
 }
 
+
+
+05_00  (RECOMMMEDER_SYSTEM)  separate python app from weaviate response
+
+05_01 vector-simialrity-search, 02 hybrid-search = vector_similarity_search * alpha + keyword-exact-search), alpha=[0..1]
+05_03, 05_04 are RAG quering of ChatGPT
