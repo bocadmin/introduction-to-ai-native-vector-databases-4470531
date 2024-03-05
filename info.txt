@@ -297,3 +297,21 @@ print(json.dumps(res,indent=2))
 
 05_01 vector-simialrity-search, 02 hybrid-search = vector_similarity_search * alpha + keyword-exact-search), alpha=[0..1]
 05_03, 05_04 are RAG quering of ChatGPT
+
+
+
+	4_X SCALABILITY: 1. QPS (queries per second)  2. ACCURACY  3. amount of RAM      
+	qps is ortogonal and opposite to accuracy, more RAM faster search and bigger scalability
+	ANN - aproximate nearest neighbors  (enables scalability) on the expense of accuracy, we perform more queries   
+	HNSW - heierachical navigable small worlds - layers of vector data points, search is from top to bottom layer.
+	04_05e.ipynb   weaviate and cohere api keys
+	05_00  01,02,03,04,05   
+	05_01 Recommender System  https://hplussport.com  User->Product->Brand, graph (cross ref) ref from user to product he likes, or product->brand , 
+	=> generate vectors using graph references (user likes(ref) product, gen products' vectors user likes) Ref2Vec !!!!
+	https://github.com/weaviate/ref2vec-ecommerce-demo   (EXAMPLE in weaviate docs of Ref2Vec w/ multi2vec-clip (image to text, multi-modal-data)
+	ref2vec-centroid   (clusterizes similar products for references/likes we defined)
+	05_02 Hybrid-Search (with RecSys from 05_01) -> keywords-exact-search vs vector-similarity-search, ponderation factors, to define how much of each
+	in the hybrid search:   keyword (exact string search  e.g. .with_bm25(query="animal"))  HYBRID_SEARCH: .with_hybrid(queryr="animal", alpha=0.5)  
+	alpha-ponderation-factor - how much keyword-exact, how much vector-similarity alpha=0.0 pure keyword-search, alpaha=1.0 (pure vector-search)
+	05_03 RAG pattern (query vectordb w/ a concept -> local knowledge docs + initial_queyr -> GPT -> accurate results + OpenAPI chatGPT
+	05_04/5  Challenge/Solution
